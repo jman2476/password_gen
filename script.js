@@ -35,9 +35,7 @@ function generatePassword() {
     var wantsSpecialChar = confirm('You need to select at least one character type. Maybe some special characters would be nice, how about that? If you don’t want anything, I’m going to keep asking.');
   }
 
-  //Let the user select character sets
-  console.log(characterSet)
-
+  // Turn user character type selecting into an array containing all desired characters
   if (wantsLowercase) {
     characterSet = characterSet.concat(lowercaseLetters);
   }
@@ -80,14 +78,12 @@ function checkPassword(pword, lowercase, uppercase, num, specChar) {
   if (lowercase) {
     for (var i = 0; i < lowercaseLetters.length; i++) {
       alpha = passPlaceholder.includes(lowercaseLetters[i])
-      console.log(alpha)
+      
       if (alpha) {
         if (intersection === undefined) {
           intersection = lowercaseLetters[i];
-          console.log(intersection);
         } else {
           intersection += lowercaseLetters[i];
-          console.log(intersection);
         }
 
       }
@@ -95,20 +91,17 @@ function checkPassword(pword, lowercase, uppercase, num, specChar) {
     if (intersection === undefined) {
       hasReqs = false;
     }
-    console.log("Has lowercase: " + hasReqs);
   }
 
   if (hasReqs && uppercase) {
     for (var i = 0; i < uppercaseLetters.length; i++) {
       alpha = passPlaceholder.includes(uppercaseLetters[i])
-      console.log(alpha)
+      
       if (alpha) {
         if (intersection === undefined) {
           intersection = uppercaseLetters[i];
-          console.log(intersection);
         } else {
           intersection += uppercaseLetters[i];
-          console.log(intersection);
         }
 
       }
@@ -116,20 +109,17 @@ function checkPassword(pword, lowercase, uppercase, num, specChar) {
     if (intersection === undefined) {
       hasReqs = false;
     }
-    console.log("Has uppercase: " + hasReqs);
   }
 
   if (hasReqs && num) {
     for (var i = 0; i < numbers.length; i++) {
       alpha = passPlaceholder.includes(numbers[i])
-      console.log(alpha)
+      
       if (alpha) {
         if (intersection === undefined) {
           intersection = numbers[i];
-          console.log(intersection);
         } else {
           intersection += numbers[i];
-          console.log(intersection);
         }
 
       }
@@ -137,20 +127,16 @@ function checkPassword(pword, lowercase, uppercase, num, specChar) {
     if (intersection === undefined) {
       hasReqs = false;
     }
-    console.log("Has numbers: " + hasReqs);
   }
 
   if (hasReqs && specChar) {
     for (var i = 0; i < specialCharacters.length; i++) {
       alpha = passPlaceholder.includes(specialCharacters[i])
-      console.log(alpha)
       if (alpha) {
         if (intersection === undefined) {
           intersection = specialCharacters[i];
-          console.log(intersection);
         } else {
           intersection += specialCharacters[i];
-          console.log(intersection);
         }
 
       }
@@ -158,7 +144,6 @@ function checkPassword(pword, lowercase, uppercase, num, specChar) {
     if (intersection === undefined) {
       hasReqs = false;
     }
-    console.log("Has special characters: " + hasReqs);
   }
   return hasReqs
 }
@@ -170,20 +155,22 @@ function readPassLength() {
 
   // Check if string given is a number or letters, and is between 8-128
   do {
-    
+    // Converts string input into number, either directyl or by taking string length
     if (isNaN(+lengthDummy)){
       scndDummy = lengthDummy.length;
     } else {
       scndDummy = +lengthDummy;
     }
 
+    // Checks the length is between 8 and 128, inclusive
     if (scndDummy >= 8 && scndDummy <= 128){
       lengthDummy = scndDummy;
     } else {
       lengthDummy = prompt('Your input did not meet the requirements. Please select password length between 8 and 128 characters. If a number is not given, the length of your input string will be used.');
     }
+    // Verify the length meets the requirments and lengthDummy has been turned into a number
   } while (typeof lengthDummy === 'string')
-  console.log(lengthDummy)
+  
   return lengthDummy;
 }
 
