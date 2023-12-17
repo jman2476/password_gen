@@ -15,10 +15,17 @@ function generatePassword() {
   var passWord = '';
   console.log(passwordLength);
 
-  var wantsLowercase = true;
-  var wantsUppercase = true;
-  var wantsNumbers = false;
-  var wantsSpecialChar = false;
+  var wantsLowercase = confirm('Do you want lowercase letters?');
+  var wantsUppercase = confirm('Do you want uppercase letters?');
+  var wantsNumbers = confirm('How about some numbers? Ya want some numbers?');
+  var wantsSpecialChar = confirm('Maybe some special characters would be nice, how about that?');
+
+  do {
+    wantsLowercase = confirm('You need to select at least one character type. Are you sure you don‘t want lowercase letters?');
+    wantsUppercase = confirm('You need to select at least one character type. Do you want uppercase letters?');
+    var wantsNumbers = confirm('You need to select at least one character type. How about some numbers? Surely you want some numbers?');
+    var wantsSpecialChar = confirm('You need to select at least one character type. Maybe some special characters would be nice, how about that? If you don’t want anything, I’m going to keep asking.');
+  } while (!wantsLowercase && !wantsUppercase && !wantsNumbers && !wantsSpecialChar);
 
   //Let the user select character sets
   console.log(characterSet)
